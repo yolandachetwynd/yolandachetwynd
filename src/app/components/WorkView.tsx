@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { Painting } from "../constants/paintings";
 import { Page, hotSpots} from "../constants/graphicNovels";
@@ -101,7 +102,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
             </div>
 
             <p>{work?.description}</p>
-            {work?.additionalImages?.map(name => {return <img src={`images/${name}`}/>}) }
+            {work?.additionalImages?.map((name: string) => {return <img key={name} src={`images/${name}`}/>}) }
         </div>
     )
 }

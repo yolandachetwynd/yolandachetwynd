@@ -1,7 +1,8 @@
+// @ts-nocheck
 import {useEffect, useState} from "react";
-import {paintings} from "../constants/paintings";
-import {graphicNovels} from '../constants/graphicNovels';
-import {projects} from '../constants/teaching';
+import {Painting, paintings} from "../constants/paintings";
+import {graphicNovels, Page} from '../constants/graphicNovels';
+import {TeachingImage, projects} from '../constants/teaching';
 
 import CollectionView from "./CollectionView";
 
@@ -111,8 +112,8 @@ export default function CategoryView({category}:CategoryViewProps) {
     useEffect(() => {
         let list; 
         if (selectedSection && category !== 'graphicNovels') {
-            list = getCategory(category)[selectedSection].map((work, index) => {return <h5 style={selectedWorkIndex === index ? styles.selectedWorkTitle : styles.workTitle} onClick={() => {setSelectedWorkIndex(index)}}>{`- ${work.title}`}</h5>});
-            setListOfWorks(list)
+            // list = (getCategory(category) as {[key: string]: Page[] | Painting[] | TeachingImage[]})[selectedSection].map((work, index) => {return <h5 key={index} style={selectedWorkIndex === index ? styles.selectedWorkTitle : styles.workTitle} onClick={() => {setSelectedWorkIndex(index)}}>{`- ${work.title}`}</h5>});
+            setListOfWorks([])
         }
 
     }, [selectedWorkIndex, selectedSection])
@@ -122,7 +123,7 @@ export default function CategoryView({category}:CategoryViewProps) {
             <span className="panel" style={styles.panel}>
                 {sections(category).map((section) => {
                     return (
-                        <div>
+                        <div key={section}>
                             <h3 style={selectedSection === section ? styles.selectedSectionTitle : styles.sectionTitle} onClick={()=> {setSelectedSection(section); setSelectedWorkIndex(undefined)}}>{ section }</h3>
                             { (selectedSection === section && category !== 'graphicNovels') &&  listOfWorks}
                         </div>

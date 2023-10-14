@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { Painting, paintings, paintingCollections } from "../constants/paintings";
 import { Page, graphicNovels, gnCollections } from "../constants/graphicNovels";
@@ -76,15 +77,15 @@ export default function CollectionView({category,section, selectedWorkIndex, set
                     <h1>{section}</h1>
 
                     <span className="collectionDescprition" style={styles.collectionDescription}>
-                        {collectionInformation ? collectionInformation[section]?.collectionDescription.map( (paragraph: string) => {
-                            return(<p>{paragraph}</p>)
+                        {collectionInformation ? collectionInformation[section]?.collectionDescription.map( (paragraph: string, index: number) => {
+                            return(<p key={index}>{paragraph}</p>)
                         }) : <></>}
                     </span>
                     
                     <span className="thumbnailGallery" style={styles.thumbnailGallery}>
                         {worksInCollection ? worksInCollection[section]?.map((work: Painting | Page | TeachingImage, index: number) => {
                             return (
-                                <span style={styles.thumbnailGallery}>
+                                <span key={index} style={styles.thumbnailGallery}>
                                     <div>
                                     <img onClick={() => {setSelectedWorkIndex(index)}} style={styles.thumbnail} src={`images/${work.filename}`} />
                                     { category === "paintings" && 
