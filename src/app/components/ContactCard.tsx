@@ -1,5 +1,6 @@
 'use client';
-import React from "react";
+import React, {useState} from "react";
+import CategoryView from "./CategoryView";
 
 const styles = {
   cardWrapper:{
@@ -11,7 +12,13 @@ const styles = {
 
   card: {
     display: 'flex',
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    // boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow: `0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)`,
     width: "80vw",
     height: "80vh",
     borderRadius: "30px",
@@ -20,12 +27,18 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
+
   headerWrapper: {
     display: 'flex',
     width: "100vw",
     height: "25vh",
     backgroundImage: `url("/header.jpeg")`,
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  //   boxShadow: `0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  // 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  // 0 12.5px 10px rgba(0, 0, 0, 0.06),
+  // 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  // 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  // 0 100px 80px rgba(0, 0, 0, 0.12)`
 
   },
   header: {
@@ -78,18 +91,19 @@ type ContactCardProps = {
   };
 
 
-const Wrapper = ({children, collapsed, onClick}: ContactCardProps) => {
+const Wrapper = ({children, collapsed}: {collapsed: boolean, children: React.ReactNode}) => {
+
   return(
     <>
     {collapsed ? (
-      <span className="header" style={styles.headerWrapper } onClick={() => onClick(!collapsed)}>
+      <span className="header" style={styles.headerWrapper } >
         <div className="title" style={styles.header}>
           {children}
         </div>
         </span> 
       ) : (
         <span className="cardWrapper" style={styles.cardWrapper} >
-          <div className="card" style={styles.card}  onClick={() => onClick(!collapsed)}>
+          <div className="card" style={styles.card} >
             {children}
           </div>
           </span>
@@ -99,20 +113,21 @@ const Wrapper = ({children, collapsed, onClick}: ContactCardProps) => {
   )
 }
 
-const SubPageWrapper = ({ collasped}: {collasped:boolean}) => {
+const SubPageWrapper = ({ collasped, category, selectCategory}: {collasped:boolean, selectCategory: (s: "paintings" | "graphicNovels" | "teaching")=>void, category: "paintings" | "graphicNovels" | "teaching"}) => {
+
   return(
     <>
       {collasped ? (
         <span style={{display:"flex", flexDirection:"row", justifyContent:"space-around", width: "80vw", textAlign:"center"}}>
-            <h3> Paintings </h3>
-            <h3> Graphic Novels </h3>
-            <h3> Teaching </h3>
+            <h3 style={category === "paintings" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("paintings")}}> Paintings </h3>
+            <h3 style={category === "graphicNovels" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("graphicNovels")}}> Booklets </h3>
+            <h3  style={category === "teaching" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("teaching")}}> Teaching </h3>
         </span>
       ) : (
         <>
-          <h2> Paintings </h2>
-          <h2> Graphic Novels </h2>
-          <h2> Teaching </h2>
+            <h2 onClick={() => {selectCategory("paintings")}}> Paintings </h2>
+            <h2 onClick={() => {selectCategory("graphicNovels")}}> Booklets </h2>
+            <h2 onClick={() => {selectCategory("teaching")}}> Teaching </h2>
         </>
       )}
     </>
@@ -121,28 +136,33 @@ const SubPageWrapper = ({ collasped}: {collasped:boolean}) => {
 
 
 export default function ContactCard({ collapsed, onClick }: ContactCardProps) {
+  const [category, setCategory] = useState<"paintings" | "graphicNovels" | "teaching">("paintings");
+
   return (
-    <Wrapper collapsed={collapsed} onClick={onClick}>
-      <span className="outerFlexColumn" style={styles.outerFlexColumn}>
-          <h1 style={{margin: "0px"}}>
-            Yolanda Chetwynd
-          </h1>
-          <p style={{margin: "0px 0px 20px 0px"}}>
-            ychetwynd@gmail.com
-          </p>
-      <span className="flexRow" style={styles.flexRow}>
-        { !collapsed && <span style={{overflow: "hidden", margin: "15px"}}><img src="SelfPortrait.jpeg" srcSet="SelfPortrait.jpeg 329w" sizes="(max-width: 600px) 200px, (max-width: 700px) 130px,
-         300px"/></span>}
-        <span className="flexColumn" style={styles.flexColumn}>
-   
+    <>
+      <Wrapper collapsed={collapsed} >
+        <span className="outerFlexColumn" style={styles.outerFlexColumn}>
+            <h1 style={{margin: "0px"}} onClick={() => {onClick(false)}}>
+              Yolanda Chetwynd
+            </h1>
+            <p style={{margin: "0px 0px 20px 0px"}}>
+              ychetwynd@gmail.com
+            </p>
+        <span className="flexRow" style={styles.flexRow}>
+          { !collapsed && <span style={{overflow: "hidden", margin: "15px"}}><img src="SelfPortrait.jpeg" srcSet="SelfPortrait.jpeg 329w" sizes="(max-width: 600px) 200px, (max-width: 700px) 130px,
+          300px"/></span>}
+          <span className="flexColumn" style={styles.flexColumn}>
+    
 
-        <SubPageWrapper collasped={collapsed} />
-          
+          <SubPageWrapper collasped={collapsed} category={category} selectCategory={(s) => {setCategory(s); onClick(true)}} />
+            
+          </span >
         </span >
-      </span >
-      </span>
+        </span>
 
-    </Wrapper>
+      </Wrapper>
+      {collapsed && <CategoryView category={category} />}
+    </>
   );
 }
   
