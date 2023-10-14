@@ -8,7 +8,7 @@ const styles = {
     display: 'flex',
     width: "100vw",
     height: "100vh",
-    backgroundImage: `url("/header.jpeg")`,
+    backgroundImage: `url("/nextjs-github-pages/header.jpeg")`,
   },
 
   card: {
@@ -33,7 +33,7 @@ const styles = {
     display: 'flex',
     width: "100vw",
     height: "25vh",
-    backgroundImage: `url("/header.jpeg")`,
+    backgroundImage: `url("/nextjs-github-pages/header.jpeg")`,
   //   boxShadow: `0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   // 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
   // 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -150,7 +150,7 @@ export default function ContactCard({ collapsed, onClick }: ContactCardProps) {
               ychetwynd@gmail.com
             </p>
         <span className="flexRow" style={styles.flexRow}>
-          { !collapsed && <span style={{overflow: "hidden", margin: "15px"}}><img src="SelfPortrait.jpeg" srcSet="SelfPortrait.jpeg 329w" sizes="(max-width: 600px) 200px, (max-width: 700px) 130px,
+          { !collapsed && <span style={{overflow: "hidden", margin: "15px"}}><img src="/nextjs-github-pages/SelfPortrait.jpeg" srcSet="SelfPortrait.jpeg 329w" sizes="(max-width: 600px) 200px, (max-width: 700px) 130px,
           300px"/></span>}
           <span className="flexColumn" style={styles.flexColumn}>
     

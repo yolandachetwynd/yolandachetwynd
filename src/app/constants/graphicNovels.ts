@@ -70,7 +70,7 @@ const invasionsPages: Page[] = [
 ]
 
 const invasionHotSpots  = {
-    2: [{corods: "", alt: "", filename:""}],
+    2: [{shape: "rectangle", corods: "511,330", alt: "", filename:"invasions_ednas_wedding.pdf"}],
     4: [{corods: "", alt: "", filname: ""}],
     6: [{corods: "", alt: "", filname: ""}],
     7: [{corods: "", alt: "", filname: ""}, {corods: "", alt: "", filname: ""}],

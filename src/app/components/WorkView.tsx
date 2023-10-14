@@ -63,10 +63,10 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                         {(selectedIndex === 0 || selectedIndex === collection.length -1) ?
                             <div style={styles.container}>
                                 <div style={styles.button} onClick={()=>{ if (selectedIndex === collection.length - 1) { setSelectedIndex(selectedIndex-2)} else if (selectedIndex - 1 >= 0) {setSelectedIndex(selectedIndex - 1)} }}/>
-                                    <img className="picture" style={styles.picture} src={`images/${work?.filename}`} />
+                                    <img className="picture" style={styles.picture} src={`/nextjs-github-pages/images/${work?.filename}`} />
                             
                                     {selectedIndex === collection.length -1 && 
-                                        <img className="picture" style={styles.picture} src={`images/${collection[0]?.filename}`}/>
+                                        <img className="picture" style={styles.picture} src={`/nextjs-github-pages/images/${collection[0]?.filename}`}/>
                   
                                     }
                                 
@@ -76,7 +76,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                             :
                             <div style={styles.container}>
                                 <div style={styles.button} onClick={()=>{ if (selectedIndex-2 >= 0 || selectedIndex -1 >=0){if (selectedIndex - 2 < 0) {setSelectedIndex(0)} else {setSelectedIndex(selectedIndex-2)}} }}/>
-                                    <img className="picture" style={styles.picture} src={`images/${collection[selectedIndex]?.filename}`} usemap="#planetmap"/>
+                                    <img className="picture" style={styles.picture} src={`/nextjs-github-pages/images/${collection[selectedIndex]?.filename}`} usemap="#planetmap"/>
                                     <map  id="planetmap" name="planetmap">
                                         <area
                                             shape="rect"
@@ -84,7 +84,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                                             href="https://www.google.com"
                                         />
                                     </map>
-                                    <img className="picture" style={styles.picture} src={`images/${collection[selectedIndex+1]?.filename}`}/>
+                                    <img className="picture" style={styles.picture} src={`/nextjs-github-pages/images/${collection[selectedIndex+1]?.filename}`}/>
                                 <div style={styles.button} onClick={()=>{ if (selectedIndex+2 < collection.length){setSelectedIndex(selectedIndex+2)} }}/>
                             </div>
                         }
@@ -94,7 +94,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                     :
                     <div style={styles.container}>
                         <div style={styles.button} onClick={()=>{ if (selectedIndex-1 >= 0){setSelectedIndex(selectedIndex-1)} }}/>
-                        <img className="picture" style={styles.picture} src={`images/${work?.filename}`} />
+                        <img className="picture" style={styles.picture} src={`/nextjs-github-pages/images/${work?.filename}`} />
                         <div style={styles.button} onClick={()=>{ if (selectedIndex+1 < collection.length){setSelectedIndex(selectedIndex+1)} }}/>
                     </div>
                 }
@@ -102,7 +102,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
             </div>
 
             <p>{work?.description}</p>
-            {work?.additionalImages?.map((name: string) => {return <img key={name} src={`images/${name}`}/>}) }
+            {work?.additionalImages?.map((name: string) => {return <img key={name} src={`/nextjs-github-pages/images/${name}`}/>}) }
         </div>
     )
 }
