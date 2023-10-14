@@ -1,11 +1,8 @@
 {
   "name": "yolandachetwynd",
   "version": "0.1.0",
-  "homepage": "https://yolandachetwynd.github.io/react-gh-pages",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d .next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
