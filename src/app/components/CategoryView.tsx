@@ -58,7 +58,7 @@ const styles = {
 
     },
     mobileFonts: {
-        fontSize: "10px"
+        fontSize: "7px"
     }
 }
 
