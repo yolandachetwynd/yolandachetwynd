@@ -3,7 +3,7 @@ const oilsAndAcrylicsPaintings: Painting[] = [
     {filename: "o_child_selling_spices_fixed.jpg", title: "A Child Selling Spices", medium: "oil on canvas", dimensions:"", avaliable: true, additionalImages: []},
     {filename: "o_celina_cooking.jpg", title: "Celina Cooking", medium: "oil on canvas", avaliable: true, additionalImages: []},
     {filename: "o_hera_and_zeus.jpg", title: "Hera and Zeus", description: "", medium: "oil on canvas", dimensions:`55"x70"`,  avaliable: true, additionalImages: []},
-    {filename: "o_a_musicians_family_fixed.jpg", title: "A Musician's Family", medium: "oil on canvas",  avaliable: true, additionalImages: []},
+    {filename: "o_family_of_musicans_fixed.jpg", title: "A Musician's Family", medium: "oil on canvas",  avaliable: true, additionalImages: []},
     {filename: "o_spiritual_ladder.jpg", title: "Spiritual Ladder", medium: "oil on canvas", dimensions: `72"X46"`, avaliable: true, additionalImages: []},
     {filename: "o_women_making_quilt.jpg", title: "Women Making a Quilt", medium: "acrylic on canvas", avaliable: false, additionalImages: []},
     {filename: "o_women_hanging_laundry.jpg", title: "Women Hanging Laundry",medium: "acrylic on canvas", avaliable: false, additionalImages: []},
