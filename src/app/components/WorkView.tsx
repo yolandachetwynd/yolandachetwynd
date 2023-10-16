@@ -74,7 +74,7 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
     return(
         <div style={useMobileView ? styles.mobileWrapper : styles.wrapper}>
             <div >
-                { category === 'graphicNovels' ?
+                { (category === 'graphicNovels' && !useMobileView) ?
                     <>                        
                         {(selectedIndex === 0 || selectedIndex === collection.length -1) ?
                             <div style={styles.container}>
