@@ -101,7 +101,7 @@ export default function CollectionView({category,section, selectedWorkIndex, set
                                         <div style={{display: "flex", width: "20vw"}}>
                                         
                                         <p style={{width: "15vw"}}>
-                                            {work.title} <br/>
+                                            {work.title}
                                             {work.dimensions} {work.medium}
                                             
                                         </p>
