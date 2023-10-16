@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 import { Painting, paintings, paintingCollections } from "../constants/paintings";
 import { Page, graphicNovels, gnCollections } from "../constants/graphicNovels";
 import { TeachingImage, projects, projectDescriptons} from '../constants/teaching';
@@ -26,6 +27,10 @@ const styles ={
         width: "20vw"
     },
 
+    mobile: {
+        width: "30vw"
+    },
+
     collectionDescription: {
         display: "flex",
         padding: "1vw",
@@ -38,6 +43,8 @@ const styles ={
 export default function CollectionView({category,section, selectedWorkIndex, setSelectedWorkIndex}:CollectionViewProps) {
     const [worksInCollection, setWorksInCollection] = useState<any>();
     const [collectionInformation, setCollectionInformation] = useState<any>();
+    const useMobileView = useMediaQuery('(max-width: 500px)');
+
 
 
     useEffect(() => {
@@ -76,20 +83,23 @@ export default function CollectionView({category,section, selectedWorkIndex, set
                 <>
                     <h1>{section}</h1>
 
-                    <span className="collectionDescprition" style={styles.collectionDescription}>
-                        {collectionInformation ? collectionInformation[section]?.collectionDescription.map( (paragraph: string, index: number) => {
-                            return(<p key={index}>{paragraph}</p>)
-                        }) : <></>}
-                    </span>
+                    { !useMobileView &&
+                        <span className="collectionDescprition" style={styles.collectionDescription}>
+                            {collectionInformation ? collectionInformation[section]?.collectionDescription.map( (paragraph: string, index: number) => {
+                                return(<p key={index}>{paragraph}</p>)
+                            }) : <></>}
+                        </span>
+                    }
                     
                     <span className="thumbnailGallery" style={styles.thumbnailGallery}>
                         {worksInCollection ? worksInCollection[section]?.map((work: Painting | Page | TeachingImage, index: number) => {
                             return (
                                 <span key={index} style={styles.thumbnailGallery}>
                                     <div>
-                                    <img onClick={() => {setSelectedWorkIndex(index)}} style={styles.thumbnail} src={`images/${work.filename}`} />
-                                    { category === "paintings" && 
+                                    <img onClick={() => {setSelectedWorkIndex(index)}} style={useMobileView ? styles.mobile : styles.thumbnail} src={`images/${work.filename}`} />
+                                    { (category === "paintings" && !useMobileView) && 
                                         <div style={{display: "flex", width: "20vw"}}>
+                                        
                                         <p style={{width: "15vw"}}>
                                             {work.title} <br/>
                                             {work.dimensions} {work.medium}

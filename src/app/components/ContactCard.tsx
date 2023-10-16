@@ -4,13 +4,23 @@ import React, {useState} from "react";
 import CategoryView from "./CategoryView";
 
 const styles = {
+
+ 
   cardWrapper:{
     display: 'flex',
     width: "100vw",
     height: "100vh",
     backgroundImage: `url("/yolandachetwynd.github.io/header.jpeg")`,
+
+
   },
 
+  button: {
+    padding: "0",
+    border: "none",
+    background: "none",
+    backgroundColor: "none",
+  },
   card: {
     display: 'flex',
     // boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
@@ -120,15 +130,27 @@ const SubPageWrapper = ({ collasped, category, selectCategory}: {collasped:boole
     <>
       {collasped ? (
         <span style={{display:"flex", flexDirection:"row", justifyContent:"space-around", width: "80vw", textAlign:"center"}}>
-            <h3 style={category === "paintings" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("paintings")}}> Paintings </h3>
-            <h3 style={category === "graphicNovels" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("graphicNovels")}}> Booklets </h3>
-            <h3  style={category === "teaching" ? {color:"#6BB0A8ff"}: undefined} onClick={() => {selectCategory("teaching")}}> Teaching </h3>
+          <button style={styles.button} onClick={() => {selectCategory("paintings")}}>
+            <h3 style={category === "paintings" ? {color:"#6BB0A8ff"}: undefined} > Paintings </h3>
+          </button>
+          <button style={styles.button} onClick={() => {selectCategory("graphicNovels")}}>
+            <h3 style={category === "graphicNovels" ? {color:"#6BB0A8ff"}: undefined}> Booklets </h3>
+          </button>
+          <button style={styles.button} onClick={() => {selectCategory("teaching")}}>
+            <h3  style={category === "teaching" ? {color:"#6BB0A8ff"}: undefined} > Teaching </h3>
+          </button>
         </span>
       ) : (
         <>
+          <button style={styles.button}>
             <h2 onClick={() => {selectCategory("paintings")}}> Paintings </h2>
+          </button>
+          <button style={styles.button}>
             <h2 onClick={() => {selectCategory("graphicNovels")}}> Booklets </h2>
+          </button >
+          <button style={styles.button}> 
             <h2 onClick={() => {selectCategory("teaching")}}> Teaching </h2>
+          </button>
         </>
       )}
     </>
@@ -143,9 +165,11 @@ export default function ContactCard({ collapsed, onClick }: ContactCardProps) {
     <>
       <Wrapper collapsed={collapsed} >
         <span className="outerFlexColumn" style={styles.outerFlexColumn}>
-            <h1 style={{margin: "0px"}} onClick={() => {onClick(false)}}>
+          <button style={styles.button} onClick={() => {onClick(false)}}>
+            <h1 style={{margin: "0px"}}>
               Yolanda Chetwynd
             </h1>
+          </button>
             <p style={{margin: "0px 0px 20px 0px"}}>
               ychetwynd@gmail.com
             </p>

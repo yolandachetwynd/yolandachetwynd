@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import {Painting, paintings} from "../constants/paintings";
 import {graphicNovels, Page} from '../constants/graphicNovels';
 import {TeachingImage, projects} from '../constants/teaching';
-
 import CollectionView from "./CollectionView";
+import {useMediaQuery} from '../hooks/useMediaQuery';
 
 const styles = {
     wrapper: {
@@ -17,11 +17,10 @@ const styles = {
         margins: "2px",
         padding: "10px",
         overflowWrap: "break-word",
-        overflow: "auto"
-
+        overflow: "auto",
     },
     sectionTitle: {
-        padding: "0 10px"
+        padding: "0 10px",
     },
     selectedSectionTitle: {
         color:"#6BB0A8ff", 
@@ -33,7 +32,7 @@ const styles = {
         margin: "5px 30px",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
     },
     selectedWorkTitle: {
         margin: "5px 30px",
@@ -42,13 +41,25 @@ const styles = {
     sectionDivider: {
         borderRight: "8px solid #bbb",
         borderRadius: "5px",
+
     },
     content: {
         minHeight: "75vh",
         width: "70vw",
         padding: "0 2vw",
+ 
     },
 
+    mobileContent: {
+        minHeight: "75vh",
+        width: "90vw",
+        padding: "0 2vw",
+        margin: "10px"
+
+    },
+    mobileFonts: {
+        fontSize: "10px"
+    }
 }
 
 const sections = (category: "paintings" | "graphicNovels" | "teaching") => {
@@ -70,7 +81,6 @@ const sections = (category: "paintings" | "graphicNovels" | "teaching") => {
     for (let section in works) {
         result.push(section);
     }
-    console.log(result);
     return result;
 }
 
@@ -102,6 +112,7 @@ export default function CategoryView({category}:CategoryViewProps) {
     const [selectedSection, setSelectedSection] = useState<string>("");
     const [selectedWorkIndex, setSelectedWorkIndex] = useState<number | undefined>();
     const [listOfWorks, setListOfWorks] = useState<string[] | undefined>();
+    const useMobileView = useMediaQuery('(max-width: 500px)');
 
 
     useEffect(() => {
@@ -119,21 +130,31 @@ export default function CategoryView({category}:CategoryViewProps) {
     }, [selectedWorkIndex, selectedSection])
 
     return(
+    
+
         <span className="wrapper" style={styles.wrapper}>
-            <span className="panel" style={styles.panel}>
-                {sections(category).map((section) => {
-                    return (
-                        <div key={section}>
-                            <h3 style={selectedSection === section ? styles.selectedSectionTitle : styles.sectionTitle} onClick={()=> {setSelectedSection(section); setSelectedWorkIndex(undefined)}}>{ section }</h3>
-                            { (selectedSection === section && category !== 'graphicNovels') &&  listOfWorks}
-                        </div>
-                    )
-                })}
-            </span>
-            <span className="sectionDivider" style={styles.sectionDivider}/>
-            <span className="content" style={styles.content}>
-                <CollectionView category={category} section={selectedSection} selectedWorkIndex={selectedWorkIndex} setSelectedWorkIndex={setSelectedWorkIndex} />
-            </span>
+            { ( !(selectedWorkIndex !== undefined && useMobileView)) && 
+            <>
+                <span className="panel" style={styles.panel}>
+                    {sections(category).map((section) => {
+                        return (
+                            <div key={section} style={useMobileView? styles.mobileFonts: undefined}>
+                                <h3 style={selectedSection === section ? styles.selectedSectionTitle : styles.sectionTitle} onClick={()=> {setSelectedSection(section); setSelectedWorkIndex(undefined)}}>{ section }</h3>
+                                { (selectedSection === section && category !== 'graphicNovels' && !useMobileView ) &&  listOfWorks}
+                            </div>
+                        )
+                    })}
+                </span>
+                <span className="sectionDivider" style={styles.sectionDivider}/>
+            </>}
+                
+
+ 
+   
+
+        <span className="content" style={(selectedWorkIndex !== undefined && useMobileView) ? styles.mobileContent : styles.content}>
+            <CollectionView category={category} section={selectedSection} selectedWorkIndex={selectedWorkIndex} setSelectedWorkIndex={setSelectedWorkIndex} />
+        </span>
         </span>
     );
 }
