@@ -19,7 +19,7 @@ const styles = {
     padding: "0",
     border: "none",
     background: "none",
-    backgroundColor: "none",
+    fontFamily: "inherit",
   },
   card: {
     display: 'flex',
