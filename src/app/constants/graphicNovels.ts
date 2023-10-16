@@ -26,7 +26,7 @@ const catalogBooklet: Booklet = {
 
 export const gnCollections = {
     "Invasions" : invasionsBooklet,
-    "Gentien The Corpal": gentienBooklet,
+    "Gentien The Corporal": gentienBooklet,
     "2017 Catalog": catalogBooklet,
     "Yo Yo Ma": yoYoMaBooklet,
 
@@ -243,7 +243,7 @@ const catalogPages: Page[] = [
 
 export const graphicNovels = {
     "Invasions" : invasionsPages,
-    "Gentien The Corpal": gentienPages,
+    "Gentien The Corporal": gentienPages,
     "Yo Yo Ma": yoYoMaPages,
     "2017 Catalog": catalogPages,
 }
