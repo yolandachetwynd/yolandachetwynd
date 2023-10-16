@@ -31,9 +31,28 @@ const styles = {
         padding: '16px 3px'
     },
 
-    button: {
+    logo: {      
+        color: "white",
+        fill: "#ff0000",
+        maxWidth: '10px',
+        maxHeight: '10px',
+    },
+
+    buttonLeft: {
         height: '60vh',
         width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+
+    },
+
+    buttonRight: {
+        height: '60vh',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'end'
+
     },
     container: {
         display: "flex",
@@ -78,7 +97,9 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                     <>                        
                         {(selectedIndex === 0 || selectedIndex === collection.length -1) ?
                             <div style={styles.container}>
-                                <div style={styles.button} onClick={()=>{ if (selectedIndex === collection.length - 1) { setSelectedIndex(selectedIndex-2)} else if (selectedIndex - 1 >= 0) {setSelectedIndex(selectedIndex - 1)} }}/>
+                                <div style={styles.buttonLeft} onClick={()=>{ if (selectedIndex === collection.length - 1) { setSelectedIndex(selectedIndex-2)} else if (selectedIndex - 1 >= 0) {setSelectedIndex(selectedIndex - 1)} }}>
+                                    <img style={styles.logo} src="left.svg" />
+                                </div>
                                     <img className="picture" style={styles.doublepicture} src={`${baseUrl}/${work?.filename}`} />
                             
                                     {selectedIndex === collection.length -1 && 
@@ -86,12 +107,16 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                   
                                     }
                                 
-                                <div style={styles.button} onClick={()=>{ if (selectedIndex+1 < collection.length){ setSelectedIndex(selectedIndex+1)} }}/>
+                                <div style={styles.buttonRight} onClick={()=>{ if (selectedIndex+1 < collection.length){ setSelectedIndex(selectedIndex+1)} }}>
+                                <img style={styles.logo} src="right.svg" />
+                                </div>
                             </div>
 
                             :
                             <div style={styles.container}>
-                                <div style={styles.button} onClick={()=>{ if (selectedIndex-2 >= 0 || selectedIndex -1 >=0){if (selectedIndex - 2 < 0) {setSelectedIndex(0)} else {setSelectedIndex(selectedIndex-2)}} }}/>
+                                <div style={styles.buttonLeft} onClick={()=>{ if (selectedIndex-2 >= 0 || selectedIndex -1 >=0){if (selectedIndex - 2 < 0) {setSelectedIndex(0)} else {setSelectedIndex(selectedIndex-2)}} }}>
+                                    <img style={styles.logo} src="left.svg" />
+                                </div>
                                     <img className="picture" style={styles.doublepicture} src={`${baseUrl}/${collection[selectedIndex]?.filename}`} usemap="#planetmap"/>
                                     <map  id="planetmap" name="planetmap">
                                         <area
@@ -101,7 +126,9 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                                         />
                                     </map>
                                     <img className="picture" style={styles.doublepicture} src={`${baseUrl}/${collection[selectedIndex+1]?.filename}`}/>
-                                <div style={styles.button} onClick={()=>{ if (selectedIndex+2 < collection.length){setSelectedIndex(selectedIndex+2)} }}/>
+                                <div style={styles.buttonRight} onClick={()=>{ if (selectedIndex+2 < collection.length){setSelectedIndex(selectedIndex+2)} }}>
+                                    <img style={styles.logo} src="right.svg" />
+                                </div>
                             </div>
                         }
                         
@@ -109,9 +136,13 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                     </>
                     :
                     <div style={styles.container}>
-                        <div style={styles.button} onClick={()=>{ if (selectedIndex-1 >= 0){setSelectedIndex(selectedIndex-1)} }}/>
+                        <div style={styles.buttonLeft} onClick={()=>{ if (selectedIndex-1 >= 0){setSelectedIndex(selectedIndex-1)} }}>
+                            <img style={styles.logo} src="left.svg" />
+                        </div>
                         <img className="picture" style={styles.picture} src={`${baseUrl}/${work?.filename}`} />
-                        <div style={styles.button} onClick={()=>{ if (selectedIndex+1 < collection.length){setSelectedIndex(selectedIndex+1)} }}/>
+                        <div style={styles.buttonRight} onClick={()=>{ if (selectedIndex+1 < collection.length){setSelectedIndex(selectedIndex+1)} }}>
+                            <img style={styles.logo} src="right.svg" />
+                        </div>
                     </div>
                 }
 
