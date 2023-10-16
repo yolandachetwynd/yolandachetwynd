@@ -4,8 +4,3 @@
   height: auto;
   min-height: 100%;
 }
-
-/* applies styles to all children of wrapper */
-.wrapper > * {
-  
-}
