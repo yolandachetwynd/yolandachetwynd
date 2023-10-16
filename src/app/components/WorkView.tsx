@@ -77,6 +77,13 @@ const styles = {
 
     mobileWrapper: {
         width: '90vw'
+    },
+    greenDot: {
+        width: "10px",
+        height: "10px",
+        borderRadius: "50%",
+        backgroundColor: "green",
+        margin: "5px"
     }
 }
 
@@ -146,6 +153,15 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                     </div>
                 }
 
+            </div>
+            <div style={useMobileView ? {display: "flex", width: "90vw", justifyContent: "space-between"} : {display: "flex", width: "70vw", justifyContent: "space-between"}}>
+                                        
+                <span style={useMobileView ? {width: "88vw"} : {width: "68vw"}}> 
+                    {work.title} <br/>
+                    {work.dimensions} {work.medium}
+                                            
+                </span>
+                {work.avaliable ? <span style={styles.greenDot} />: <></>}
             </div>
             {/* <p>{work?.description}</p>
             {work?.additionalImages?.map((name: string) => {return <img key={name} src={`${baseUrl}/${name}`}/>}) } */}

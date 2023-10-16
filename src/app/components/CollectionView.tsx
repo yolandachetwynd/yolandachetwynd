@@ -36,6 +36,14 @@ const styles ={
         padding: "1vw",
         justifyContent: "center",
         flexDirection: "column"
+    },
+
+    greenDot: {
+        width: "10px",
+        height: "10px",
+        borderRadius: "50%",
+        backgroundColor: "green",
+        margin: "5px"
     }
 }
 
@@ -98,14 +106,14 @@ export default function CollectionView({category,section, selectedWorkIndex, set
                                     <div>
                                     <img onClick={() => {setSelectedWorkIndex(index)}} style={useMobileView ? styles.mobile : styles.thumbnail} src={`images/${work.filename}`} />
                                     { (category === "paintings" && !useMobileView) && 
-                                        <div style={{display: "flex", width: "20vw"}}>
+                                        <div style={{display: "flex", width: "20vw", justifyContent: "space-between"}}>
                                         
-                                        <p style={{width: "15vw"}}>
-                                            {work.title}
-                                            {work.dimensions} {work.medium}
-                                            
-                                        </p>
-                                        {work.avaliable ? <p style={{width:"15vw", textAlign:"right"}}> contact to buy</p>: <></>}
+                                            <span style={{width: "18vw"}}> 
+                                                {work.title} <br/>
+                                                {work.dimensions} {work.medium}
+                                                
+                                            </span>
+                                            {work.avaliable ? <span style={styles.greenDot} />: <></>}
                                         </div>
                                     }
                                     </div>
