@@ -25,18 +25,25 @@ const styles = {
     selectedSectionTitle: {
         color:"#6BB0A8ff", 
         padding: "0px 10px ",
-        border:"2px solid #CED0CC", 
-        borderRadius: "30px",
+        // border:"2px solid #CED0CC", 
+        // borderRadius: "30px",
+    },
+    button: {
+        padding: "0",
+        border: "none",
+        background: "none",
+        fontFamily: "inherit",
+        color: "#000"
     },
     workTitle: {
         margin: "5px 30px",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
+        whiteSpace: "nowrap"
     },
     selectedWorkTitle: {
         margin: "5px 30px",
-        color:"#6BB0A8ff"
+        color:"#6BB0A8ff",
     },
     sectionDivider: {
         borderRight: "8px solid #bbb",
@@ -58,7 +65,7 @@ const styles = {
 
     },
     mobileFonts: {
-        fontSize: "7px"
+        fontSize: "7px",
     }
 }
 
@@ -123,7 +130,7 @@ export default function CategoryView({category}:CategoryViewProps) {
     useEffect(() => {
         let list; 
         if (selectedSection && category !== 'graphicNovels') {
-            list = (getCategory(category) as {[key: string]: Page[] | Painting[] | TeachingImage[]})[selectedSection].map((work, index) => {return <h5 key={index} style={selectedWorkIndex === index ? styles.selectedWorkTitle : styles.workTitle} onClick={() => {setSelectedWorkIndex(index)}}>{`- ${work.title}`}</h5>});
+            list = (getCategory(category) as {[key: string]: Page[] | Painting[] | TeachingImage[]})[selectedSection].map((work, index) => {return <button onClick={() => {setSelectedWorkIndex(index)}} style={styles.button}> <h5 key={index} style={selectedWorkIndex === index ? styles.selectedWorkTitle : styles.workTitle}>{`- ${work.title}`}</h5></button>});
             setListOfWorks(list)
         }
 
@@ -139,7 +146,9 @@ export default function CategoryView({category}:CategoryViewProps) {
                     {sections(category).map((section) => {
                         return (
                             <div key={section} style={useMobileView? styles.mobileFonts: undefined}>
-                                <h3 style={selectedSection === section ? styles.selectedSectionTitle : styles.sectionTitle} onClick={()=> {setSelectedSection(section); setSelectedWorkIndex(undefined)}}>{ section }</h3>
+                                <button style={styles.button} onClick={()=> {setSelectedSection(section); setSelectedWorkIndex(undefined)}}>
+                                    <h3 style={selectedSection === section ? styles.selectedSectionTitle : styles.sectionTitle} >{ section }</h3>
+                                </button>
                                 { (selectedSection === section && category !== 'graphicNovels' && !useMobileView ) &&  listOfWorks}
                             </div>
                         )
