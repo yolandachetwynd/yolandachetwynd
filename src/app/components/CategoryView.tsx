@@ -50,14 +50,14 @@ const styles = {
         cursor: "default",
     },
     sectionDivider: {
-        borderRight: "8px solid #bbb",
-        borderRadius: "5px",
+        borderRight: "8px solid #6fb18e",
 
     },
     content: {
         minHeight: "75vh",
         width: "70vw",
         padding: "0 2vw",
+        margin: "auto",
  
     },
 
@@ -65,7 +65,7 @@ const styles = {
         minHeight: "75vh",
         width: "90vw",
         padding: "0 2vw",
-        margin: "10px"
+        margin: "auto",
 
     },
     mobileFonts: {

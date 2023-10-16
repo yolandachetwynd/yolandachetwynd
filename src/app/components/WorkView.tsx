@@ -154,14 +154,14 @@ export default function WorkView({ collection, category, selectedIndex, setSelec
                 }
 
             </div>
-            <div style={useMobileView ? {display: "flex", width: "90vw", justifyContent: "space-between"} : {display: "flex", width: "70vw", justifyContent: "space-between"}}>
+            <div style={useMobileView ? {display: "flex", width: "90vw", justifyContent: "space-between", margin: "auto"} : {display: "flex", width: "70vw", justifyContent: "space-between", margin: "auto"}}>
                                         
-                <span style={useMobileView ? {width: "88vw"} : {width: "68vw"}}> 
+                <span style={useMobileView ? {width: "83vw"} : {width: "63vw"}}> 
                     {work.title} <br/>
                     {work.dimensions} {work.medium}
                                             
                 </span>
-                {work.avaliable ? <span style={styles.greenDot} />: <></>}
+                {work.avaliable ? <p>contact to buy</p>: <></>}
             </div>
             {/* <p>{work?.description}</p>
             {work?.additionalImages?.map((name: string) => {return <img key={name} src={`${baseUrl}/${name}`}/>}) } */}
