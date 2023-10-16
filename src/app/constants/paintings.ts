@@ -17,7 +17,7 @@ const watercolorsPaintings: Painting[] = [
     {filename: "wc_three_women_working.jpg", title: "Two women with baskets and one carrying wood", medium: "watercolor", description: "", avaliable: true, additionalImages: []},
     {filename: "wc_cotton_candy_sellers.jpg", title: "Cotton Candy Seller", description: "", medium: "watercolor",avaliable: true, additionalImages: []},
     {filename: "wc_boy_with_green_balloon.jpg", title: "Boy with Green Ballon", description: "", medium: "watercolor",avaliable: false, additionalImages: []},
-    {filename: "wc_wisteria_over_arched_door.jpg", title: "Wisteria over Arched Door,", description: "", dimensions: `14”x 18”x 2”`, medium: "Watercolor and Acrylics mounted on board",avaliable: false, additionalImages: []},
+    {filename: "wc_wisteria_over_arched_door.jpg", title: "Wisteria over Arched Door", description: "", dimensions: `14”x 18”x 2”`, medium: "Watercolor and Acrylics mounted on board",avaliable: false, additionalImages: []},
 ]
 
 const venusDeMiloPaintings: Painting[] = [
