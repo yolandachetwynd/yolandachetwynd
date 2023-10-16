@@ -83,13 +83,13 @@ export default function CollectionView({category,section, selectedWorkIndex, set
                 <>
                     <h1>{section}</h1>
 
-                    { !useMobileView &&
+                    
                         <span className="collectionDescprition" style={styles.collectionDescription}>
                             {collectionInformation ? collectionInformation[section]?.collectionDescription.map( (paragraph: string, index: number) => {
                                 return(<p key={index}>{paragraph}</p>)
                             }) : <></>}
                         </span>
-                    }
+                
                     
                     <span className="thumbnailGallery" style={styles.thumbnailGallery}>
                         {worksInCollection ? worksInCollection[section]?.map((work: Painting | Page | TeachingImage, index: number) => {

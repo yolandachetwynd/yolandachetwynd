@@ -20,6 +20,7 @@ const styles = {
     border: "none",
     background: "none",
     fontFamily: "inherit",
+    fontColor: "inherit"
   },
   card: {
     display: 'flex',
