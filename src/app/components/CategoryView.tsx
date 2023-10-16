@@ -113,7 +113,7 @@ export default function CategoryView({category}:CategoryViewProps) {
         let list; 
         if (selectedSection && category !== 'graphicNovels') {
             list = (getCategory(category) as {[key: string]: Page[] | Painting[] | TeachingImage[]})[selectedSection].map((work, index) => {return <h5 key={index} style={selectedWorkIndex === index ? styles.selectedWorkTitle : styles.workTitle} onClick={() => {setSelectedWorkIndex(index)}}>{`- ${work.title}`}</h5>});
-            setListOfWorks([])
+            setListOfWorks(list)
         }
 
     }, [selectedWorkIndex, selectedSection])
